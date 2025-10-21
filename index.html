@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Diary</title>
+  <style>
+    body {
+      background-color: #fffdd0;
+      font-family: "Cascadia Code Semibold", monospace;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .navdiv {
+      background-color: #8A9A5B;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100px;
+      padding: 0 50px;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      color: #fffdd0;
+      font-weight: bold;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+      background-color: #fffdd0;
+      border-radius: 50%;
+    }
+
+    .text {
+      display: flex;
+      gap: 20px;
+    }
+
+    .text a {
+      color: #fffdd0;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .text a:hover {
+      color: #0F2B46;
+    }
+
+    button {
+      background-color: #8A9A5B;
+      border-radius: 6px;
+      padding: 10px 30px;
+      border: none;
+      color: #fffdd0;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #6f8049;
+    }
+
+    .signs {
+      text-align: right;
+    }
+
+    h1 {
+      color: #0F2B46;
+      font-size: 50px;
+      margin-top: 80px;
+      font-family: MV Boli;
+    }
+
+    p {
+      font-size: 18px;
+      color: #444;
+    }
+
+    /* WHY CHOOSE US */
+    .us {
+      display: flex;
+      gap: 20px;
+      margin: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .w1, .w2, .w3, .w4 {
+      background-color:#6f8049 ;
+      color: #fffdd0;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      text-align: left;
+    }
+
+    h3 {
+      color: #fffdd0;
+    }
+
+    /* ===== SERVICES SECTION ===== */
+    .services-section {
+      background-color: #6f8049;
+      color: #fffdd0;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .services-section h1 {
+      color: #fffdd0;
+      text-shadow: 0 0 10px #8A9A5B;
+      margin-bottom: 50px;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #8A9A5B;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+      box-shadow: 0 0 20px #8A9A5B;
+    }
+
+    .timeline-item {
+      padding: 20px;
+      position: relative;
+      width: 50%;
+      margin-bottom: 80px;
+    }
+
+    .timeline-item.left {
+      left: 0;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      background-color: #8A9A5B;
+      border-radius: 50%;
+      top: 25px;
+      z-index: 1;
+      box-shadow: 0 0 20px #8A9A5B;
+    }
+
+    .timeline-item.right::after {
+      left: -10px;
+    }
+
+    .timeline-content {
+      padding: 20px;
+      background-color: rgba(255, 253, 208, 0.05);
+      border-radius: 15px;
+      border: 2px solid #8A9A5B;
+      box-shadow: 0 0 15px #8A9A5B;
+      position: relative;
+      color: #fffdd0;
+      backdrop-filter: blur(5px);
+    }
+
+    .timeline-content h3 {
+      color:#0F2B46;
+      text-shadow: 0 0 10px #8A9A5B;
+      margin-bottom: 10px;
+    }
+
+    .timeline-content p {
+      color: #fffdd0;
+    }
+
+    .timeline-date {
+      color: #fffdd0;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* ===== HELP FORM ===== */
+    .help-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+    }
+
+    .helpform {
+      background-color: #8A9A5B;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .helpform input,
+    .helpform textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .helpform button {
+      background-color: #fffdd0;
+      color: #8A9A5B;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .helpform button:hover {
+      background-color: #e0e0a0;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #8A9A5B;
+      color: #fffdd0;
+      width: 100%;
+      height: 60px;
+      text-align: center;
+      padding-top: 25px;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .timeline::after {
+        left: 20px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 25px;
+      }
+
+      .timeline-item.right {
+        left: 0;
+      }
+
+      .timeline-item::after {
+        left: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navdiv">
+      <div class="logo">
+        <img src="logo2.png" alt="Daily Diary Logo"> Daily Diary
+      </div>
+      <div class="text">
+        <a href="home.html">Home</a>
+        <a href="why-choose-us.html">Why Us</a>
+        <a href="services.html">Services</a>
+        <a href="Help.html">Help</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="signs">
+    <a href="signup.html"><button>Signup</button></a>
+    <a href="signin.html"><button>Signin</button></a>
+  </div>
+
+  <h1><b>WELCOME TO DAILY DIARY 👋</b></h1>
+  <p style="font-family: segeo print;"><i><q>Where procrastination slows and responsibility rises.</q></i></p>
+
+  <h1>Why Choose Us?</h1>
+  <div class="us">
+    <div class="w1">
+      <h3>Efficiency</h3>
+      <p>Daily Diary helps you plan every minute, reducing time wastage and improving productivity.</p>
+    </div>
+    <div class="w2">
+      <h3>Notifications</h3>
+      <p>We send reminders to help you stay on track with your day’s schedule.</p>
+    </div>
+    <div class="w3">
+      <h3>AI</h3>
+      <p>Our AI helps users make better scheduling decisions and provides helpful advice.</p>
+    </div>
+    <div class="w4">
+      <h3>Responsibility</h3>
+      <p>Rate your day with green, yellow, or red to build consistency and self-discipline.</p>
+    </div>
+  </div>
+
+  <!-- ===== SERVICES SECTION ===== -->
+  <div class="services-section">
+    <h1 style="color:#0F2B46;">Our Services</h1>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>Day Scheduling</h3>
+          <p>Plan your day minute by minute to improve time management and productivity.</p>
+          
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>Smart Notifications</h3>
+          <p>Receive automated reminders and motivational messages throughout your day.</p>
+        
+        </div>
+      </div>
+
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>Performance Rating</h3>
+          <p>Evaluate your consistency and responsibility with our color-coded rating system.</p>
+          
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>AI Guidance</h3>
+          <p>AI assistance to analyze your performance and suggest daily improvements.</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>Help Centre</h1>
+  <h3><b>Get Started</b></h3>
+  <p style="text-align: left;">Create an account <a href="signup.html">here</a> or <a href="signin.html">Sign in</a> if you already have one.</p>
+  <p  style="text-align: left;">If you encounter any challenge, let us know by filling out the form below:</p>
+
+  <div class="help-form">
+    <form class="helpform" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+      <input type="email" placeholder="Your email" required>
+      <textarea placeholder="Describe your issue..." rows="4" required></textarea>
+      <button type="submit">Submit Now</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer">
+      © 2025 Daily Diary. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
+
