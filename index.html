@@ -5,14 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Diary</title>
   <style>
+    * :root {
+      --c1: #8A9A5B;
+      --c2:#fffdd0;
+      --c2:#fffdd0;
+      
+
+    }
     body {
-      background-color: #fffdd0;
+      background-color:#fff;
       font-family: "Cascadia Code Semibold", monospace;
       text-align: center;
       margin: 0;
       padding: 0;
+      padding-top: 100px;
+       
     }
-
     /* Navbar */
     .navdiv {
       background-color: #8A9A5B;
@@ -23,6 +31,10 @@
       height: 100px;
       padding: 0 50px;
       box-sizing: border-box;
+      position:fixed;
+      z-index:1000;
+      top: 0;
+      left: 0;
     }
 
     .logo {
@@ -75,6 +87,7 @@
 
     .signs {
       text-align: right;
+      position: fixed;
     }
 
     h1 {
@@ -88,7 +101,23 @@
       font-size: 18px;
       color: #444;
     }
-
+    /* Homepage*/
+    .homepage {
+      display: flex;
+      padding-left: 10px ;
+      padding-right: 100px;
+      padding-top:30px;
+      gap: 50px;
+    }
+    #paragraph2 {
+      padding-top: 60px;
+      justify-content: center;
+      align-items: center;
+    }
+    #paragraph2 p {
+      font-size: 50px;
+      font-family: 'Segoe Print', sans-serif;
+    }
     /* WHY CHOOSE US */
     .us {
       display: flex;
@@ -96,6 +125,7 @@
       margin: 20px;
       flex-wrap: wrap;
       justify-content: center;
+  
     }
 
     .w1, .w2, .w3, .w4 {
@@ -113,7 +143,7 @@
 
     /* ===== SERVICES SECTION ===== */
     .services-section {
-      background-color: #6f8049;
+      background-color:var(--c3) ;
       color: #fffdd0;
       padding: 60px 20px;
       text-align: center;
@@ -139,14 +169,14 @@
       top: 0;
       bottom: 0;
       left: 50%;
-      margin-left: -2px;
+      margin-left: -20px;
       box-shadow: 0 0 20px #8A9A5B;
     }
 
     .timeline-item {
       padding: 20px;
       position: relative;
-      width: 50%;
+      width: 44.5%;
       margin-bottom: 80px;
     }
 
@@ -208,6 +238,7 @@
       justify-content: center;
       align-items: center;
       margin: 40px 0;
+      
     }
 
     .helpform {
@@ -230,6 +261,7 @@
       border: none;
       outline: none;
       font-size: 16px;
+      padding-right: 10px;
     }
 
     .helpform button {
@@ -277,33 +309,43 @@
         left: 10px;
       }
     }
+  
+  
   </style>
 </head>
 <body>
 
+<div>
   <nav class="navbar">
     <div class="navdiv">
       <div class="logo">
         <img src="logo2.png" alt="Daily Diary Logo"> Daily Diary
       </div>
       <div class="text">
-        <a href="home.html">Home</a>
-        <a href="why-choose-us.html">Why Us</a>
-        <a href="services.html">Services</a>
-        <a href="Help.html">Help</a>
+        <a href="#c1">Home</a>
+        <a href="#c2">Why Us</a>
+        <a href="#c3">Services</a>
+        <a href="#c4">Help</a>
       </div>
     </div>
   </nav>
 
   <div class="signs">
-    <a href="signup.html"><button>Signup</button></a>
-    <a href="signin.html"><button>Signin</button></a>
+    <a href="signup.html"></a><button>Sign up</button>
+    <a id="c1" href="signin.html"></a><button>Sign in</button>
   </div>
-
-  <h1><b>WELCOME TO DAILY DIARY 👋</b></h1>
+  <div class="homepage">
+    <div id="homewords">
+  <h1 ><b>WELCOME TO DAILY DIARY 👋</b></h1>
   <p style="font-family: segeo print;"><i><q>Where procrastination slows and responsibility rises.</q></i></p>
+  <div id="paragraph2"  ">
+  <p  style="font-family: segeo print;", >Never miss a task you have got the rigth place </p> 
+</div>
+</div>
+  <img src="img.jpeg" alt="An image showing to plan"  height="450px"  width="450px">
+</div>
 
-  <h1>Why Choose Us?</h1>
+  <h1  >Why Choose Us?</h1>
   <div class="us">
     <div class="w1">
       <h3>Efficiency</h3>
@@ -319,13 +361,13 @@
     </div>
     <div class="w4">
       <h3>Responsibility</h3>
-      <p>Rate your day with green, yellow, or red to build consistency and self-discipline.</p>
+      <p >Rate your day with green, yellow, or red to build consistency and self-discipline.</p>
     </div>
   </div>
 
   <!-- ===== SERVICES SECTION ===== -->
-  <div class="services-section">
-    <h1 style="color:#0F2B46;">Our Services</h1>
+  <div id="c3" class="services-section">
+    <h1 style="color:#0F2B46;" >Our Services</h1>
     <div class="timeline">
       <div class="timeline-item left">
         <div class="timeline-content">
@@ -354,32 +396,26 @@
       <div class="timeline-item right">
         <div class="timeline-content">
           <h3>AI Guidance</h3>
-          <p>AI assistance to analyze your performance and suggest daily improvements.</p>
+          <p id="c4">AI assistance to analyze your performance and suggest daily improvements.</p>
           
         </div>
       </div>
     </div>
-  </div>
+  </div >
 
-  <h1>Help Centre</h1>
+  <h1 >Help Centre</h1>
   <h3><b>Get Started</b></h3>
   <p style="text-align: left;">Create an account <a href="signup.html">here</a> or <a href="signin.html">Sign in</a> if you already have one.</p>
   <p  style="text-align: left;">If you encounter any challenge, let us know by filling out the form below:</p>
 
   <div class="help-form">
-    <form class="helpform" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+    <form class="helpform" action="#" method="post" >
       <input type="email" placeholder="Your email" required>
       <textarea placeholder="Describe your issue..." rows="4" required></textarea>
-      <button type="submit">Submit Now</button>
+      <button type="submit" value="submit">Submit Now</button>
     </form>
   </div>
 
   <footer>
     <div class="footer">
-      © 2025 Daily Diary. All rights reserved.
-    </div>
-  </footer>
-
-</body>
-</html>
-
+      © 2025 Daily Diary. All rights re
