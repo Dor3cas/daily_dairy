@@ -3,48 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
-    <style>
+    <title>Sign up daily diary</title>
+<style>
 body {
     background-color:  #fffdd0;
-    text-align: center;
-    padding-left: 225px;
-    padding-top: 150px;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* full page height */
+    margin: 0;     
 }
-button {
-    border-radius: 6px;
-    background-color: #fffdd0;
-    padding:10px 30px;
-    border:none;
-    
-
-}
-.new {
-    background-color: #8A9A5B;
-    border-radius: 6px;
-    width:250px;
+.login {
+     background-color: #8A9A5B;
+    width:400px;
+    height: 500px;
     padding-bottom:20px;
     border-radius:6px;
-    
+    font-size:18px;
+    padding-left: 20px;
+}
+.login input {
+     border-radius:5px; 
+}
+form{
+    padding-top: 5px;
 }
 h1 {
     color: #fffdd0;
+    font-size:80px;
+
 }
- 
-    </style>
+</style>
 </head>
 <body>
-    <div class="new">
-<h1> Signup</h1>
-  <form class="signup">
-    <p>Enter your email</p>
-    <input type="Email" placeholder="Email" required>
-    <p>Set a password</p>
-    <input type="Password" placeholder="Password" required><br><br>
-    <a href="submit"><button>Submit</button></a>
-  </form>
-  </div>
-    
+    <div class="login">
+ <form action="#" method="post">
+    <h1>Sign up</h1>
+    <div><label for="fname">Firstname</label><br><input type="text" name="firstname" id="fname"></div>
+    <div><label for="lname">Lastname</label><br><input type="text" name="lastname" id="lname"></div>
+    <div><label for="email">Email</label><br><input type="email" name="email" id="email"></div> <br>
+    <input type="submit" value="submit">
+
+     <p>You can <a href="signin.html">Signup</a> if you don't have an account.</p>
+ </form>
+    </div>
 </body>
 </html>
