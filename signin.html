@@ -5,49 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in daily diary</title>
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color:  #fffdd0;
+    background: linear-gradient(135deg, #fffdd0 0%, #f5f3c0 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* full page height */
-    margin: 0;     
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 .login {
-     background-color: #8A9A5B;
-    width:400px;
-    height: 500px;
-    padding-bottom:20px;
-    border-radius:20px;
-    font-size:18px;
-    padding-left: 20px;
+    background-color: #8A9A5B;
+    width: 420px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out;
 }
-form{
-    padding-top: 5px;
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-.login input{
-    border-radius:5px;  
-} 
 
 h1 {
     color: #fffdd0;
-    font-size:80px;
+    font-size: 42px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
 
+.input-group {
+    margin-bottom: 25px;
+}
 
+.input-group label {
+    display: block;
+    color: #fffdd0;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-group input:focus {
+    border: 2px solid #fffdd0;
+    box-shadow: 0 0 10px rgba(255, 253, 208, 0.3);
+    transform: translateY(-2px);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #fffdd0;
+    color: #8A9A5B;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+    background-color: #f5f3c0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 25px;
+    color: #fffdd0;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #fffdd0;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid #fffdd0;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .login {
+        width: 90%;
+        padding: 30px 25px;
+    }
+    
+    h1 {
+        font-size: 36px;
+    }
 }
 </style>
 </head>
 <body>
     <div class="login">
- <form action="#" method="post">
-    <h1>Sign in</h1>
-    <div><label for="fname">Firstname</label><br><input type="text" name="firstname" id="fname"></div>
-    <div><label for="lname">Lastname</label><br><input type="text" name="lastname" id="lname"></div>
-    <div><label for="email">Email</label><br><input type="email" name="email" id="email"></div> <br>
-    <input type="submit" value="submit">
-
-     <p>You can <a href="signup.html">Signup</a> if you don't have an account.</p>
- </form>
+        <form action="#" method="post">
+            <h1>Log In</h1>
+            
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="pword">Password</label>
+                <input type="password" name="password" id="pword" placeholder="Enter your password" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            </div>
+            
+            <button type="submit" class="submit-btn">LOG IN</button>
+            
+            <p class="signup-link">Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </form>
     </div>
 </body>
 </html>
