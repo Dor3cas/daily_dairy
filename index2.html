@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Diary - Master Your Days</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --olive: #8A9A5B;
+      --cream: #fffdd0;
+      --dark-olive: #6f8049;
+      --navy: #0F2B46;
+      --olive-light: #a4b570;
+      --olive-pale: #d4dcc4;
+      --cream-dark: #f5f2d0;
+      --white: #ffffff;
+      --black: #1a1a1a;
+      --grey: #5a5a5a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==================== NAVIGATION ==================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 3px solid var(--olive);
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      box-shadow: 0 4px 20px rgba(138, 154, 91, 0.15);
+    }
+
+    .nav {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-mark {
+      width: 45px;
+      height: 45px;
+      background: var(--olive);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 3px solid var(--dark-olive);
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover .logo-mark {
+      transform: rotate(10deg) scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      padding-bottom: 5px;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--olive);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .button {
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .button-outline {
+      background: transparent;
+      color: var(--olive);
+      border: 2px solid var(--olive);
+    }
+
+    .button-outline:hover {
+      background: var(--olive);
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    .button-filled {
+      background: var(--olive);
+      color: var(--cream);
+      border: 2px solid var(--olive);
+    }
+
+    .button-filled:hover {
+      background: var(--dark-olive);
+      border-color: var(--dark-olive);
+      transform: translateY(-2px);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--navy);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2.5rem 4rem;
+      background: 
+        linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 50%, var(--olive-pale) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 500px;
+      height: 500px;
+      background: var(--olive-light);
+      opacity: 0.15;
+      border-radius: 45% 55% 60% 40% / 50% 60% 40% 50%;
+      animation: blob 15s ease-in-out infinite;
+    }
+
+    @keyframes blob {
+      0%, 100% { border-radius: 45% 55% 60% 40% / 50% 60% 40% 50%; }
+      50% { border-radius: 60% 40% 45% 55% / 40% 50% 60% 50%; }
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      background: var(--dark-olive);
+      opacity: 0.1;
+      border-radius: 60% 40% 45% 55% / 40% 50% 60% 50%;
+      animation: blob 18s ease-in-out infinite reverse;
+    }
+
+    .hero-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-text h1 .accent {
+      color: var(--olive);
+      font-style: italic;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-text h1 .accent::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: var(--olive-light);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .tagline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--olive);
+      margin-bottom: 1rem;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--grey);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      max-width: 550px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .button-large {
+      padding: 1rem 2.5rem;
+      font-size: 1.05rem;
+      border-radius: 10px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      text-align: left;
+    }
+
+    .stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--olive);
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--grey);
+      margin-top: 0.3rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 
+        0 20px 60px rgba(15, 43, 70, 0.15),
+        0 0 0 1px rgba(138, 154, 91, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--olive) 0%, var(--dark-olive) 100%);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+    }
+
+    .date-badge {
+      background: var(--olive-pale);
+      color: var(--olive);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .task-list {
+      list-style: none;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      background: var(--cream);
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      border: 1px solid var(--olive-pale);
+    }
+
+    .task-checkbox {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--olive);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .task-checkbox.checked {
+      background: var(--olive);
+      position: relative;
+    }
+
+    .task-checkbox.checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--cream);
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .task-text {
+      color: var(--black);
+      font-size: 0.95rem;
+    }
+
+    .task-text.done {
+      text-decoration: line-through;
+      color: var(--grey);
+    }
+
+    /* ==================== FEATURES ==================== */
+    .features {
+      padding: 6rem 2.5rem;
+      background: var(--white);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      color: var(--olive);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    .features-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-box {
+      background: var(--cream);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--olive);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-8px);
+      border-color: var(--olive);
+      box-shadow: 0 12px 30px rgba(138, 154, 91, 0.2);
+    }
+
+    .feature-box:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 65px;
+      height: 65px;
+      background: var(--olive);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border: 3px solid var(--dark-olive);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-box:hover .feature-icon {
+      transform: rotate(-5deg) scale(1.1);
+    }
+
+    .feature-box h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-box p {
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ==================== SERVICES ==================== */
+    .services {
+      padding: 6rem 2.5rem;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--olive-pale) 100%);
+    }
+
+    .services-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-left: 6px solid var(--olive);
+      box-shadow: 0 8px 25px rgba(15, 43, 70, 0.08);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 12px 35px rgba(138, 154, 91, 0.2);
+    }
+
+    .service-num {
+      width: 70px;
+      height: 70px;
+      background: var(--olive);
+      color: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      border: 4px solid var(--dark-olive);
+      box-shadow: 0 4px 15px rgba(138, 154, 91, 0.3);
+    }
+
+    .service-content h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+    }
+
+    .service-content p {
+      color: var(--grey);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    /* ==================== CTA ==================== */
+    .cta {
+      padding: 5rem 2.5rem;
+      background: var(--white);
+    }
+
+    .cta-box {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: 
+        linear-gradient(135deg, var(--olive) 0%, var(--dark-olive) 100%);
+      border-radius: 25px;
+      padding: 4rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(138, 154, 91, 0.3);
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .cta-box::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .cta-content p {
+      font-size: 1.15rem;
+      color: rgba(255, 253, 208, 0.9);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .button-cta {
+      background: var(--cream);
+      color: var(--olive);
+      border: 2px solid var(--cream);
+      font-weight: 700;
+    }
+
+    .button-cta:hover {
+      background: var(--white);
+      border-color: var(--white);
+    }
+
+    /* ==================== HELP ==================== */
+    .help {
+      padding: 6rem 2.5rem;
+      background: var(--cream);
+    }
+
+    .help-container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .help-info {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .help-info p {
+      font-size: 1.1rem;
+      color: var(--grey);
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .help-info a {
+      color: var(--olive);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid var(--olive);
+    }
+
+    .help-info a:hover {
+      color: var(--dark-olive);
+      border-bottom-color: var(--dark-olive);
+    }
+
+    .form {
+      background: var(--white);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(15, 43, 70, 0.1);
+      border: 2px solid var(--olive-pale);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid var(--olive-pale);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--cream);
+      color: var(--black);
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--olive);
+      background: var(--white);
+    }
+
+    .form-textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-button {
+      width: 100%;
+      padding: 1.1rem;
+      background: var(--olive);
+      color: var(--cream);
+      border: 2px solid var(--olive);
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .form-button:hover {
+      background: var(--dark-olive);
+      border-color: var(--dark-olive);
+      transform: translateY(-2px);
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 3.5rem 2.5rem 2rem;
+    }
+
+    .footer-grid {
+      max-width: 1300px;
+      margin: 0 auto 2.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-brand p {
+      color: rgba(255, 253, 208, 0.7);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .footer-col h4 {
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 253, 208, 0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--olive-light);
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 253, 208, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      color: rgba(255, 253, 208, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 253, 208, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--olive);
+      transform: translateY(-3px);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+
+      .hero-visual {
+        order: -1;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions,
+      .stats {
+        justify-content: center;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta {
+        position: fixed;
+        top: 75px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.2rem;
+        border-bottom: 3px solid var(--olive);
+        box-shadow: 0 4px 20px rgba(138, 154, 91, 0.15);
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 99;
+      }
+
+      .nav-links.active,
+      .nav-cta.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .nav-cta {
+        top: 280px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 6rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .service-num {
+        margin: 0 auto 1rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form {
+        padding: 2rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .hero,
+      .features,
+      .services,
+      .cta,
+      .help,
+      .footer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .stats {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .cta-box {
+        padding: 3rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="#home" class="logo">
+        <div class="logo-mark">📔</div>
+        Daily Diary
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#help">Help</a></li>
+      </ul>
+
+      <div class="nav-cta" id="navCta">
+        <a href="signup.html" class="button button-outline">Sign Up</a>
+        <a href="signin.html" class="button button-filled">Sign In</a>
+      </div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <p class="tagline">"Where procrastination slows and responsibility rises"</p>
+        <h1>
+          Master Your Days,<br>
+          <span class="accent">Build Better Habits</span>
+        </h1>
+        <p class="hero-description">
+          Daily Diary helps you plan every minute, stay on track with smart reminders, 
+          and build the consistency you need to achieve your goals.
+        </p>
+        <div class="hero-actions">
+          <a href="signup.html" class="button button-filled button-large">Get Started Free</a>
+          <a href="#features" class="button button-outline button-large">Learn More</a>
+        </div>
+        <div class="stats">
+          <div class="stat-box">
+            <span class="stat-number">10K+</span>
+            <span class="stat-label">Happy Users</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Productivity Boost</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">4.9★</span>
+            <span class="stat-label">User Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <h3>Today's Tasks</h3>
+            <span class="date-badge">Jan 17, 2026</span>
+          </div>
+          <ul class="task-list">
+            <li class="task-item">
+              <div class="task-checkbox checked"></div>
+              <span class="task-text done">Morning workout routine</span>
+            </li>
+            <li class="task-item">
+              <div class="task-checkbox checked"></div>
+              <span class="task-text done">Review project proposal</span>
+            </li>
+            <li class="task-item">
+              <div class="task-checkbox"></div>
+              <span class="task-text">Team meeting at 2 PM</span>
+            </li>
+            <li class="task-item">
+              <div class="task-checkbox"></div>
+              <span class="task-text">Prepare dinner ingredients</span>
+            </li>
+            <li class="task-item">
+              <div class="task-checkbox"></div>
+              <span class="task-text">Evening reading session</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="section-header">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">Everything You Need to Stay Productive</h2>
+      <p class="section-text">
+        Powerful tools designed to help you manage time, build habits, 
+        and achieve your daily goals with ease.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="feature-icon">⚡</div>
+        <h3>Maximum Efficiency</h3>
+        <p>
+          Plan every minute of your day with precision. Reduce time wastage 
+          and improve productivity through smart scheduling.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon">🔔</div>
+        <h3>Smart Notifications</h3>
+        <p>
+          Get timely reminders and motivational messages to help you stay 
+          on track with your schedule throughout the day.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon">🤖</div>
+        <h3>AI Powered</h3>
+        <p>
+          Our AI assistant helps you make better scheduling decisions and 
+          provides personalized advice for your goals.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon">🎯</div>
+        <h3>Build Responsibility</h3>
+        <p>
+          Rate your day with green, yellow, or red to track consistency 
+          and build the self-discipline you need.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="section-header">
+      <span class="section-label">Our Services</span>
+      <h2 class="section-title">Comprehensive Tools for Success</h2>
+      <p class="section-text">
+        A complete productivity ecosystem to transform how you manage 
+        your time and build lasting habits.
+      </p>
+    </div>
+
+    <div class="services-container">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-content">
+          <h3>Day Scheduling</h3>
+          <p>
+            Plan your day minute by minute with our intuitive scheduler. 
+            Organize tasks, set priorities, and visualize your entire day 
+            for maximum time management efficiency.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-content">
+          <h3>Smart Notifications</h3>
+          <p>
+            Stay on track with automated reminders and motivational messages. 
+            Our notification system adapts to your schedule and sends timely 
+            alerts to keep you focused.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-content">
+          <h3>Performance Rating</h3>
+          <p>
+            Evaluate your consistency with our color-coded rating system. 
+            Track progress, identify patterns, and build the discipline 
+            needed for long-term success.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-content">
+          <h3>AI Guidance</h3>
+          <p>
+            Receive personalized insights from our AI assistant. Analyze 
+            performance, discover opportunities, and get actionable advice 
+            for continuous improvement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-box">
+      <div class="cta-content">
+        <h2>Ready to Transform Your Days?</h2>
+        <p>
+          Join thousands of users who have mastered their time and built 
+          better habits with Daily Diary. Start for free today!
+        </p>
+        <a href="signup.html" class="button button-cta button-large">Get Started Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help -->
+  <section id="help" class="help">
+    <div class="help-container">
+      <div class="section-header">
+        <span class="section-label">Support</span>
+        <h2 class="section-title">We're Here to Help</h2>
+      </div>
+
+      <div class="help-info">
+        <p>
+          Create an account <a href="signup.html">here</a> or 
+          <a href="signin.html">sign in</a> if you already have one.
+        </p>
+        <p>
+          Have questions or need assistance? Fill out the form below 
+          and our team will respond within 24 hours.
+        </p>
+      </div>
+
+      <form class="form" action="#" method="post">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">Full Name</label>
+            <input type="text" id="name" class="form-input" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="subject">Subject</label>
+          <input type="text" id="subject" class="form-input" placeholder="What's this about?" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea id="message" class="form-textarea" placeholder="Tell us more..." required></textarea>
+        </div>
+
+        <button type="submit" class="form-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Daily Diary</h3>
+        <p>
+          Transform procrastination into productivity. Build habits that 
+          last and achieve goals that matter.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Updates</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Licenses</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Daily Diary. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const navCta = document.getElementById('navCta');
+
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      navCta.classList.toggle('active');
+    });
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        navCta.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Form submission
+    const form = document.querySelector('.form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you! We\'ll get back to you within 24 hours.');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
