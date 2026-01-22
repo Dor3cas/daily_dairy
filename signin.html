@@ -124,6 +124,28 @@ h1 {
     color: #fff;
     border-bottom-color: #fff;
 }
+.back {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back a {
+    color: #fffdd0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: 2px solid #fffdd0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.back a:hover {
+    background-color: #fffdd0;
+    color: #8A9A5B;
+    transform: translateY(-2px);
+}
 
 /* Responsive */
 @media screen and (max-width: 480px) {
@@ -161,7 +183,11 @@ h1 {
             <button type="submit" class="submit-btn">LOG IN</button>
             
             <p class="signup-link">Don't have an account? <a href="signup.html">Sign Up</a></p>
+               <div class="back">
+            <a href="index.html">← Back to Home</a>
+        </div>
         </form>
+
     </div>
 </body>
 </html>
